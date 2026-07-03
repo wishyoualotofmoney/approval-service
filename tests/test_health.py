@@ -1,0 +1,13 @@
+from __future__ import annotations
+
+
+async def test_health(client):
+    resp = await client.get("/health")
+    assert resp.status_code == 200
+    assert resp.json() == {"status": "ok"}
+
+
+async def test_ready(client):
+    resp = await client.get("/ready")
+    assert resp.status_code == 200
+    assert resp.json()["status"] == "ready"
