@@ -5,7 +5,7 @@ Backend-сервис согласования контента перед пуб
 (approve / reject / cancel).
 
 Внешние сущности (публикации, сценарии, пользователи, workspace) передаются
-только как идентификаторы — соседние сервисы здесь не реализуются.
+только как идентификаторы - соседние сервисы здесь не реализуются.
 
 Стек: **Python + FastAPI**, **SQLAlchemy 2.0 (async)**, **Alembic**,
 PostgreSQL (docker-compose) или SQLite (локально).
@@ -60,7 +60,7 @@ pytest
 
 ## Auth (заглушка для локального запуска)
 
-Полноценной аутентификации нет — вместо неё каждый запрос несёт контекст в
+Полноценной аутентификации нет - вместо неё каждый запрос несёт контекст в
 HTTP-заголовках. Подпись/проверка токена не выполняется, это осознанная
 заглушка для локальной разработки.
 
@@ -150,9 +150,9 @@ curl -X POST .../approval-requests/{id}/reject  -d '{"reason": "Brand tone is wr
 curl -X POST .../approval-requests/{id}/cancel  -d '{"reason": "Draft was removed"}'   ...
 ```
 
-Статусы: `pending → approved | rejected | cancelled`. Все три — финальные.
+Статусы: `pending → approved | rejected | cancelled`. Все три - финальные.
 Повторное применение того же решения возвращает `200` (идемпотентно); попытка
-перейти в другое финальное состояние — `409`.
+перейти в другое финальное состояние - `409`.
 
 ### Идемпотентность
 
@@ -178,22 +178,22 @@ GET /api/v1/workspaces/{workspace_id}/approval-requests?status=pending&limit=50&
 
 ```
 app/
-  main.py            — сборка FastAPI-приложения
-  config.py          — настройки (env / .env)
-  db.py              — async engine и session
-  models.py          — SQLAlchemy-модели
-  schemas.py         — Pydantic-схемы (camelCase, strict input)
-  auth.py            — auth-заглушка и проверка действий
-  logging.py         — логирование + редакция секретов
-  repository.py      — доступ к данным (scoped by workspace)
-  service.py         — бизнес-логика: state machine, идемпотентность
-  events.py          — аудит-лог и transactional outbox
-  errors.py          — доменные ошибки и обработчики
+  main.py            - сборка FastAPI-приложения
+  config.py          - настройки (env / .env)
+  db.py              - async engine и session
+  models.py          - SQLAlchemy-модели
+  schemas.py         - Pydantic-схемы (camelCase, strict input)
+  auth.py            - auth-заглушка и проверка действий
+  logging.py         - логирование + редакция секретов
+  repository.py      - доступ к данным (scoped by workspace)
+  service.py         - бизнес-логика: state machine, идемпотентность
+  events.py          - аудит-лог и transactional outbox
+  errors.py          - доменные ошибки и обработчики
   api/
     health.py
     approval_requests.py
-migrations/          — Alembic
-tests/               — pytest
+migrations/          - Alembic
+tests/               - pytest
 ```
 
-Подробнее об архитектурных решениях — в [DESIGN.md](DESIGN.md).
+Подробнее об архитектурных решениях - в [DESIGN.md](DESIGN.md).

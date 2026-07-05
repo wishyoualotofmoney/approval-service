@@ -30,7 +30,7 @@ def get_principal(
 ) -> Principal:
     """Local auth stub.
 
-    Credentials are passed as plain headers (no signature — stub only):
+    Credentials are passed as plain headers (no signature - stub only):
       X-Workspace-Id: ws_1
       X-User-Id:      usr_1
       X-Actions:      approval:read,approval:create,approval:decide,approval:cancel
@@ -52,7 +52,7 @@ def require_action(action: str):
     """Dependency factory: enforce path/token workspace match + required action.
 
     The workspace in the auth headers must match the {workspace_id} in the URL,
-    and the principal must carry the required action — otherwise 403.
+    and the principal must carry the required action - otherwise 403.
     """
 
     def _dep(

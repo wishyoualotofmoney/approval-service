@@ -80,7 +80,7 @@ def _body(model: ApprovalRequest) -> dict:
 
 
 def _safe_event_payload(model: ApprovalRequest) -> dict:
-    """Event payload with identifiers only — no free-text / secret-bearing fields."""
+    """Event payload with identifiers only - no free-text / secret-bearing fields."""
     return {
         "id": model.id,
         "workspaceId": model.workspace_id,
